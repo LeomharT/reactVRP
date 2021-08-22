@@ -1,0 +1,16 @@
+{
+	"activatedProducts": [
+		{
+			"id": "realTimeProtetion",
+			"name": "Real-time Protection(Client)"
+		},
+		{
+			"id": "nextGenSecureWebGateway",
+			"name": "NextGen Secure Web Gateway"
+		},
+		{
+			"id": "",
+			"name": "NextGen Secure Web Gateway"
+		}
+	]
+}
