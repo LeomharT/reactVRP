@@ -6,3 +6,6 @@ export enum counterActionType {
     INCREMENT = "INCREMENT",
     DECREMENT = "DECREMENT"
 };
+
+
+export const storeb = createStore(rReducer);
