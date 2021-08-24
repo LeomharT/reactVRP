@@ -2,7 +2,7 @@ import { IconButton } from '@zendeskgarden/react-buttons';
 import {
     Body,
     Content, Header, HeaderItem,
-    HeaderItemIcon, HeaderItemText, Main, Sidebar
+    HeaderItemIcon, HeaderItemText, Main
 } from '@zendeskgarden/react-chrome';
 import { ColorpickerDialog, IColor } from '@zendeskgarden/react-colorpickers';
 import { DEFAULT_THEME } from '@zendeskgarden/react-theming';
@@ -16,9 +16,11 @@ import { ReactComponent as PersonIcon } from '@zendeskgarden/svg-icons/src/16/us
 import { rgba } from 'polished';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import { SetSideBarToExpand, SetSideBarToFold, SetToDarkTheme, SetToLightTheme } from '../../redux/HomeStore/Home_Actions';
 import { IsDarkThemeSelector, IsExpandedSelector } from '../../redux/HomeStore/Home_Selector';
 import { ThemeType } from '../../redux/HomeStore/Home_Types';
+import { router, RouterType } from '../../route/routers';
 
 
 
@@ -78,17 +80,21 @@ export default function ContentBody() {
             </Header>
             <Content id="example-main-content">
                 <Main style={{ padding: 28 }}>
+                    <Switch>
+                        {router[0].childrenRoute?.map((r: RouterType) => {
+                            return (
+                                <Route
+                                    key={r.path}
+                                    path={r.path}
+                                    exact={r.exact}
+                                    component={r.component}
+                                />
+                            );
+                        })}
+                    </Switch>
                     <XXL>Main Content</XXL>
                     <MD>Beetroot water spinach okra water chestnut ricebean pea catsear.</MD>
                 </Main>
-                <Sidebar style={{ padding: 28 }}>
-                    <XXL>Example Sidebar</XXL>
-                    <MD>
-                        Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer
-                        purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale
-                        radicchio turnip chicory salsify pea sprouts fava bean.
-                    </MD>
-                </Sidebar>
             </Content>
         </Body>
     );

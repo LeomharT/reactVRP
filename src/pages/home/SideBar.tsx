@@ -1,18 +1,19 @@
 import { Nav, NavItem, NavItemIcon, NavItemText } from '@zendeskgarden/react-chrome';
 import { PALETTE } from '@zendeskgarden/react-theming';
-import { ReactComponent as EmailIcon } from '@zendeskgarden/svg-icons/src/26/email-fill.svg';
 import { ReactComponent as ProductIcon } from '@zendeskgarden/svg-icons/src/26/garden.svg';
 import { ReactComponent as HomeIcon } from '@zendeskgarden/svg-icons/src/26/home-fill.svg';
-import { ReactComponent as SettingsIcon } from '@zendeskgarden/svg-icons/src/26/settings-fill.svg';
 import { ReactComponent as ZendeskIcon } from '@zendeskgarden/svg-icons/src/26/zendesk.svg';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { IsDarkThemeSelector, IsExpandedSelector } from '../../redux/HomeStore/Home_Selector';
 import { ThemeType } from '../../redux/HomeStore/Home_Types';
+import { router, RouterType } from '../../route/routers';
 export default function SideBar() {
-    const [nav, setNav] = useState('nav-1');
+    const [nav, setNav] = useState<string>();
     const isExpandedSelector: boolean = useSelector(IsExpandedSelector);
     const isDarkThemeSelector: boolean = useSelector(IsDarkThemeSelector);
+    const history = useHistory();
 
     return (
         <Nav isExpanded={isExpandedSelector} style={{ backgroundColor: isDarkThemeSelector ? ThemeType.DARK : ThemeType.LIGHT }}>
@@ -22,24 +23,22 @@ export default function SideBar() {
                 </NavItemIcon>
                 {isExpandedSelector && <NavItemText>Zendesk Garden</NavItemText>}
             </NavItem>
-            <NavItem isCurrent={nav === 'nav-1'} onClick={() => setNav('nav-1')}>
-                <NavItemIcon>
-                    <HomeIcon />
-                </NavItemIcon>
-                {isExpandedSelector && <NavItemText>Home</NavItemText>}
-            </NavItem>
-            <NavItem isCurrent={nav === 'nav-2'} onClick={() => setNav('nav-2')}>
-                <NavItemIcon>
-                    <EmailIcon />
-                </NavItemIcon>
-                {isExpandedSelector && <NavItemText>Email</NavItemText>}
-            </NavItem>
-            <NavItem isCurrent={nav === 'nav-3'} onClick={() => setNav('nav-3')}>
-                <NavItemIcon>
-                    <SettingsIcon />
-                </NavItemIcon>
-                {isExpandedSelector && <NavItemText>Settings</NavItemText>}
-            </NavItem>
+            {router[0].childrenRoute!.map((r: RouterType) => {
+                return (
+                    <NavItem
+                        isCurrent={nav === r.title}
+                        onClick={() => {
+                            setNav(r.title);
+                            history.push(r.path);
+                        }}
+                    >
+                        <NavItemIcon>
+                            <HomeIcon />
+                        </NavItemIcon>
+                        {isExpandedSelector && <NavItemText>{r.title} </NavItemText>}
+                    </NavItem>
+                );
+            })}
             <NavItem hasBrandmark title="Zendesk">
                 <NavItemIcon>
                     <ZendeskIcon />
