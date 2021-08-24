@@ -1,7 +1,6 @@
 import { Nav, NavItem, NavItemIcon, NavItemText } from '@zendeskgarden/react-chrome';
 import { PALETTE } from '@zendeskgarden/react-theming';
 import { ReactComponent as ProductIcon } from '@zendeskgarden/svg-icons/src/26/garden.svg';
-import { ReactComponent as HomeIcon } from '@zendeskgarden/svg-icons/src/26/home-fill.svg';
 import { ReactComponent as ZendeskIcon } from '@zendeskgarden/svg-icons/src/26/zendesk.svg';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -24,8 +23,10 @@ export default function SideBar() {
                 {isExpandedSelector && <NavItemText>Zendesk Garden</NavItemText>}
             </NavItem>
             {router[0].childrenRoute!.map((r: RouterType) => {
+                console.log(r.icon);
                 return (
                     <NavItem
+                        key={r.path}
                         isCurrent={nav === r.title}
                         onClick={() => {
                             setNav(r.title);
@@ -33,7 +34,7 @@ export default function SideBar() {
                         }}
                     >
                         <NavItemIcon>
-                            <HomeIcon />
+                            {r.icon}
                         </NavItemIcon>
                         {isExpandedSelector && <NavItemText>{r.title} </NavItemText>}
                     </NavItem>
