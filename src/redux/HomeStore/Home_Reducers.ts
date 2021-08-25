@@ -36,7 +36,6 @@ export const IsDarkThemeReducer: Reducer<boolean, Action<isDarkThemeActionEnum>>
 
 export const SetPrimaryHueReducer: Reducer<string, ActionProps<setPrimaryHueEnum, string>> =
     (state: string = 'blue', action: ActionProps<setPrimaryHueEnum, string>) => {
-        console.log(action.payload);
         switch (action.type) {
             case setPrimaryHueEnum.setPrimary: {
                 state = action.payload;

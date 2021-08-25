@@ -1,12 +1,13 @@
 import { Nav, NavItem, NavItemIcon, NavItemText } from '@zendeskgarden/react-chrome';
 import { PALETTE } from '@zendeskgarden/react-theming';
-import { ReactComponent as ProductIcon } from '@zendeskgarden/svg-icons/src/26/garden.svg';
+import { ReactComponent as LineGraphFillIcon } from '@zendeskgarden/svg-icons/src/16/line-graph-fill.svg';
 import { ReactComponent as ZendeskIcon } from '@zendeskgarden/svg-icons/src/26/zendesk.svg';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { IsDarkThemeSelector, IsExpandedSelector } from '../../redux/HomeStore/Home_Selector';
 import { router, RouterType } from '../../route/routers';
+
 export default function SideBar(props: {}) {
     const [nav, setNav] = useState<string>();
     const isExpandedSelector: boolean = useSelector(IsExpandedSelector);
@@ -16,7 +17,7 @@ export default function SideBar(props: {}) {
         <Nav isExpanded={isExpandedSelector}>
             <NavItem hasLogo>
                 <NavItemIcon>
-                    <ProductIcon style={{ color: PALETTE.green[400] }} />
+                    <LineGraphFillIcon style={{ color: PALETTE.blue[600] }} />
                 </NavItemIcon>
                 {isExpandedSelector && <NavItemText>Zendesk Garden</NavItemText>}
             </NavItem>
@@ -34,7 +35,7 @@ export default function SideBar(props: {}) {
                         <NavItemIcon>
                             {r.icon}
                         </NavItemIcon>
-                        {isExpandedSelector && <NavItemText>{r.title} </NavItemText>}
+                        {isExpandedSelector && <NavItemText style={!isDarkThemeSelector ? { color: 'black', fontWeight: "bold" } : {}}>{r.title} </NavItemText>}
                     </NavItem>
                 );
             })}

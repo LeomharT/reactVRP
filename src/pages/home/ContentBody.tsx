@@ -80,7 +80,7 @@ export default function ContentBody(props: {}) {
                     <HeaderItemText isClipped>User</HeaderItemText>
                 </div>
             </Header>
-            <Content id="example-main-content">
+            <Content id="example-main-content" style={{ height: "100vh" }}>
                 <Main style={{ padding: 28 }}>
                     <Switch>
                         {router[0].childrenRoute?.map((r: RouterType) => {
