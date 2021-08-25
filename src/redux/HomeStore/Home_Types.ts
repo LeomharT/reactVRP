@@ -1,4 +1,5 @@
 import { Action } from "redux";
+import { ActionProps } from "../../store/types";
 
 export enum isExpandedActionEnum {
     expanded = 'EXPANDED',
@@ -14,3 +15,8 @@ export enum ThemeType {
     LIGHT = '#FAFAFA'
 }
 export declare type isDarkThemeActionType = Action<isDarkThemeActionEnum.darktheme> | Action<isDarkThemeActionEnum.lighttheme>;
+export enum setPrimaryHueEnum {
+    setPrimary = 'SETPRIMARYHUEENUM'
+}
+
+export declare type setPrimaryHueActionType = ActionProps<setPrimaryHueEnum.setPrimary, string>;

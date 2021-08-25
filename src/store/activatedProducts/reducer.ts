@@ -1,6 +1,6 @@
-import { ActivatedProductsState, ActionTypes } from './types';
-import { GET_ACTIVATED_PRODUCTS } from './actions';
 import { Reducer } from 'redux';
+import { GET_ACTIVATED_PRODUCTS } from './actions';
+import { ActionTypes, ActivatedProductsState } from './types';
 
 const initialState: ActivatedProductsState = {
     activatedProducts: []

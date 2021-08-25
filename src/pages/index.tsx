@@ -1,6 +1,8 @@
+import { Provider } from 'react-redux';
 import {
     BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
+import { storeHome } from '../redux/HomeStore/Home_Store';
 import { router, RouterType } from '../route/routers';
 
 function App() {
@@ -8,17 +10,19 @@ function App() {
         <div className="App">
             <Router>
                 <Switch>
-                    {
-                        router.map((r: RouterType) => {
-                            return (
-                                <Route
-                                    key={r.path}
-                                    exact={r.exact}
-                                    component={r.component}
-                                />
-                            );
-                        })
-                    }
+                    <Provider store={storeHome}>
+                        {
+                            router.map((r: RouterType) => {
+                                return (
+                                    <Route
+                                        key={r.path}
+                                        exact={r.exact}
+                                        component={r.component}
+                                    />
+                                );
+                            })
+                        }
+                    </Provider>
                 </Switch>
             </Router>
         </div>

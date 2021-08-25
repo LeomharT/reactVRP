@@ -9,6 +9,7 @@
     "@zendeskgarden/react-buttons": "^8.39.0",
     "@zendeskgarden/react-chrome": "^8.39.0",
     "@zendeskgarden/react-colorpickers": "^8.39.0",
+    "@zendeskgarden/react-forms": "^8.39.0",
     "@zendeskgarden/react-grid": "^8.39.0",
     "@zendeskgarden/react-modals": "^8.39.0",
     "@zendeskgarden/react-theming": "^8.39.0",

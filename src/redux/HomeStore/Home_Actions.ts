@@ -1,4 +1,4 @@
-import { isDarkThemeActionEnum, isDarkThemeActionType, isExpandedActionEnum, isExpandedActionType } from "./Home_Types";
+import { isDarkThemeActionEnum, isDarkThemeActionType, isExpandedActionEnum, isExpandedActionType, setPrimaryHueActionType, setPrimaryHueEnum } from "./Home_Types";
 
 export const SetSideBarToExpand = (): isExpandedActionType => {
     return (
@@ -18,5 +18,13 @@ export const SetToDarkTheme = (): isDarkThemeActionType => {
 export const SetToLightTheme = (): isDarkThemeActionType => {
     return (
         { type: isDarkThemeActionEnum.lighttheme }
+    );
+};
+export const SetPrimaryHue = (payload: string): setPrimaryHueActionType => {
+    return (
+        {
+            type: setPrimaryHueEnum.setPrimary,
+            payload
+        }
     );
 };
