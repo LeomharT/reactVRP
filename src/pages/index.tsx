@@ -11,17 +11,15 @@ function App() {
             <Router>
                 <Switch>
                     <Provider store={storeHome}>
-                        {
-                            router.map((r: RouterType) => {
-                                return (
-                                    <Route
-                                        key={r.path}
-                                        exact={r.exact}
-                                        component={r.component}
-                                    />
-                                );
-                            })
-                        }
+                        {router.map((r: RouterType) => {
+                            return (
+                                <Route
+                                    key={r.path}
+                                    exact={r.exact}
+                                    component={r.component}
+                                />
+                            );
+                        })}
                     </Provider>
                 </Switch>
             </Router>
