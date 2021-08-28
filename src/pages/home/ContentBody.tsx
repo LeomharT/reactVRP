@@ -6,7 +6,6 @@ import {
 } from '@zendeskgarden/react-chrome';
 import { ColorpickerDialog, IColor } from '@zendeskgarden/react-colorpickers';
 import { DEFAULT_THEME } from '@zendeskgarden/react-theming';
-import { MD, XXL } from '@zendeskgarden/react-typography';
 import { ReactComponent as MenuTrayIcon } from '@zendeskgarden/svg-icons/src/16/grid-2x2-stroke.svg';
 import { ReactComponent as IndentIncreaseFillIcon } from '@zendeskgarden/svg-icons/src/16/indent-increase-fill.svg';
 import { ReactComponent as LightbulbFillIcon } from '@zendeskgarden/svg-icons/src/16/lightbulb-fill.svg';
@@ -15,11 +14,12 @@ import { ReactComponent as PaletteIcon } from '@zendeskgarden/svg-icons/src/16/p
 import { ReactComponent as PersonIcon } from '@zendeskgarden/svg-icons/src/16/user-solo-stroke.svg';
 import { rgba } from 'polished';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { SetPrimaryHue, SetSideBarToExpand, SetSideBarToFold, SetToDarkTheme, SetToLightTheme } from '../../redux/HomeStore/Home_Actions';
 import { IsDarkThemeSelector, IsExpandedSelector } from '../../redux/HomeStore/Home_Selector';
 import { ThemeType } from '../../redux/HomeStore/Home_Types';
+import { ListingStore } from '../../redux/ListingStore/Listing_Store';
 import { router, RouterType } from '../../route/routers';
 
 
@@ -83,19 +83,20 @@ export default function ContentBody(props: {}) {
             <Content id="example-main-content" style={{ height: "100vh" }}>
                 <Main style={{ padding: 28 }}>
                     <Switch>
-                        {router[0].childrenRoute?.map((r: RouterType) => {
-                            return (
-                                <Route
-                                    key={r.path}
-                                    path={r.path}
-                                    exact={r.exact}
-                                    component={r.component}
-                                />
-                            );
-                        })}
+                        <Provider store={ListingStore}>
+
+                            {router[0].childrenRoute?.map((r: RouterType) => {
+                                return (
+                                    <Route
+                                        key={r.path}
+                                        path={r.path}
+                                        exact={r.exact}
+                                        component={r.component}
+                                    />
+                                );
+                            })}
+                        </Provider>
                     </Switch>
-                    <XXL>Main Content</XXL>
-                    <MD>Beetroot water spinach okra water chestnut ricebean pea catsear.</MD>
                 </Main>
             </Content>
         </Body>

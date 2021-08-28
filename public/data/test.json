@@ -1,4 +1,29 @@
-{
-    "name": "lzy",
-    "age": 21
-}
+[
+    {
+        "companies": "alibaba",
+        "openingprice": 21.11,
+        "bidprice": 12.11,
+        "askprice": 11.12,
+        "highprice": 20,
+        "lowprice": 10,
+        "closeprice": 20
+    },
+    {
+        "companies": "tencent",
+        "openingprice": 21.11,
+        "bidprice": 12.11,
+        "askprice": 11.12,
+        "highprice": 20,
+        "lowprice": 10,
+        "closeprice": 20
+    },
+    {
+        "companies": "baidu",
+        "openingprice": 21.11,
+        "bidprice": 12.11,
+        "askprice": 11.12,
+        "highprice": 20,
+        "lowprice": 10,
+        "closeprice": 20
+    }
+]
