@@ -12,4 +12,8 @@ export declare interface ListingData {
 export enum ListingDataActionEnums {
     GetData = "GETLISTINGDATA"
 }
+export enum WatchListActionEnums {
+    GetData = "GETWATCHLISTDATA",
+    AddToWatchList = "ADDWATCHLISTDATA",
+};
 export type getListingActionType = ActionProps<ListingDataActionEnums.GetData, ListingData[]>;

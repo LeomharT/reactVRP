@@ -9,4 +9,9 @@ tr th,tr td
     border    : 1px solid lightgrey;
     text-align: center;
 }
+tr th
+{
+    box-sizing: border-box;
+    padding: 5px;
+}
 `;

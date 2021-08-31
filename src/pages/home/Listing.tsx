@@ -1,5 +1,6 @@
 import { Button } from '@zendeskgarden/react-buttons';
-import React, { ReactNode, useEffect } from 'react';
+import { Close, Notification, Title, useToast } from '@zendeskgarden/react-notifications';
+import React, { ReactNode, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListingData } from '../../redux/ListingStore/Listing_Types';
 import { GetListingDataSelector } from '../../redux/ListingStore/Listring_Selector';
@@ -27,7 +28,7 @@ export default function Listing() {
                     <th>buy / sell</th>
                 </tr>
             </thead>
-            {DataRow(getListringDataSelector)}
+            {DataRow(getListringDataSelector, "listing")}
         </ListingTable>
     );
 }
@@ -38,7 +39,26 @@ export default function Listing() {
  * @param data
  * @returns
  */
-const DataRow = (data: ListingData[]): ReactNode => {
+export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
+
+    const { addToast } = useToast();
+    const handleClick = useCallback(
+        () => {
+            return () => {
+                addToast(
+                    ({ close }) => (
+                        <Notification type='success' style={{ width: '450px' }}>
+                            <Title>Info</Title>
+                            Turnip greens yarrow ricebean cauliflower sea lettuce kohlrabi amaranth water
+                            <Close aria-label="Close" onClick={close} />
+                        </Notification>
+                    ),
+                    { placement: "top" }
+                );
+            };
+        },
+        [addToast]
+    );
     if (!data) return null;
     return (
         <tbody>
@@ -70,6 +90,24 @@ const DataRow = (data: ListingData[]): ReactNode => {
                             <Button size='small'>Buy</Button>
                             &nbsp;&nbsp;
                             <Button size='small'>Sell</Button>
+                            &nbsp;&nbsp;
+                            {(() => {
+                                switch (dataType) {
+                                    case "listing": {
+                                        return (
+                                            <Button
+                                                size='small'
+                                                onClick={handleClick()}
+                                            >
+                                                Add Watch
+                                            </Button>
+                                        );
+                                    }
+                                    default: {
+                                        return null;
+                                    }
+                                }
+                            })()}
                         </td>
                     </tr>
                 );

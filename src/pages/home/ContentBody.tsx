@@ -84,7 +84,6 @@ export default function ContentBody(props: {}) {
                 <Main style={{ padding: 28 }}>
                     <Switch>
                         <Provider store={ListingStore}>
-
                             {router[0].childrenRoute?.map((r: RouterType) => {
                                 return (
                                     <Route
