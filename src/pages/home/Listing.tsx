@@ -12,7 +12,6 @@ export default function Listing() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({ type: "GetListingData" });
-        console.log(1);
     }, [dispatch]);
     return (
         <ListingTable>
@@ -43,13 +42,13 @@ export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
 
     const { addToast } = useToast();
     const handleClick = useCallback(
-        () => {
+        (message: string) => {
             return () => {
                 addToast(
                     ({ close }) => (
                         <Notification type='success' style={{ width: '450px' }}>
                             <Title>Info</Title>
-                            Turnip greens yarrow ricebean cauliflower sea lettuce kohlrabi amaranth water
+                            {message}
                             <Close aria-label="Close" onClick={close} />
                         </Notification>
                     ),
@@ -59,6 +58,7 @@ export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
         },
         [addToast]
     );
+    const dispatch = useDispatch();
     if (!data) return null;
     return (
         <tbody>
@@ -87,7 +87,11 @@ export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
                             {d.lowprice}
                         </td>
                         <td>
-                            <Button size='small'>Buy</Button>
+                            <Button size='small'
+                                onClick={() => {
+                                    dispatch({ type: 'AddWatchData' });
+                                }}
+                            >Buy</Button>
                             &nbsp;&nbsp;
                             <Button size='small'>Sell</Button>
                             &nbsp;&nbsp;
@@ -97,7 +101,19 @@ export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
                                         return (
                                             <Button
                                                 size='small'
-                                                onClick={handleClick()}
+                                                onClick={() => {
+
+                                                    addToast(
+                                                        ({ close }) => (
+                                                            <Notification type='success' style={{ width: '450px' }}>
+                                                                <Title>Info</Title>
+                                                                success
+                                                                <Close aria-label="Close" onClick={close} />
+                                                            </Notification>
+                                                        ),
+                                                        { placement: "top" }
+                                                    );
+                                                }}
                                             >
                                                 Add Watch
                                             </Button>

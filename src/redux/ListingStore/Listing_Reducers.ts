@@ -18,6 +18,12 @@ export const WatchListDataReducer: Reducer<ListingData[], ActionProps<WatchListA
                     state = action.payload;
                 return state;
             }
+            case WatchListActionEnums.AddToWatchList: {
+                console.log(action.payload);
+                if (!action.payload) return state;
+                state = state.concat(action.payload);
+                return state;
+            }
             default: {
                 return state;
             }
@@ -27,7 +33,7 @@ export const WatchListDataReducer: Reducer<ListingData[], ActionProps<WatchListA
 
 export const RootReducerListing = combineReducers({
     GetListingDataReducer,
-
+    WatchListDataReducer,
 });
 
 export type RootStateListing = ReturnType<typeof RootReducerListing>;

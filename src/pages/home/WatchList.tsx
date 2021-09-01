@@ -1,12 +1,15 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { GetListingDataSelector } from '../../redux/ListingStore/Listring_Selector';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetWatchDataSelector } from '../../redux/ListingStore/Listring_Selector';
 import { DataRow } from './Listing';
 import { ListingTable } from './style/ListingStyled';
 
 export default function WatchList() {
-    const getListringDataSelector = useSelector(GetListingDataSelector);
-
+    const getWatchDataSelector = useSelector(GetWatchDataSelector);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch({ type: "GetWatchData" });
+    }, [dispatch]);
     return (
         <ListingTable>
             <thead>
@@ -21,7 +24,7 @@ export default function WatchList() {
                     <th>buy / sell</th>
                 </tr>
             </thead>
-            {DataRow(getListringDataSelector, "watchlist")}
+            {DataRow(getWatchDataSelector, "watchlist")}
         </ListingTable>
     );
 }

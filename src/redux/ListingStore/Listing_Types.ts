@@ -17,3 +17,5 @@ export enum WatchListActionEnums {
     AddToWatchList = "ADDWATCHLISTDATA",
 };
 export type getListingActionType = ActionProps<ListingDataActionEnums.GetData, ListingData[]>;
+export type getWatchActionType = ActionProps<WatchListActionEnums.GetData, ListingData[]>;
+export type addWatchActionType = ActionProps<WatchListActionEnums.AddToWatchList, ListingData[]>;

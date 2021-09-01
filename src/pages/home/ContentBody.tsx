@@ -37,7 +37,7 @@ export default function ContentBody(props: {}) {
     const dispatch = useDispatch();
     const [color, setColor] = useState<string | IColor>(rgba(DEFAULT_THEME.palette.blue[600], 1));
     return (
-        <Body hasFooter>
+        <Body>
             <Header style={{ justifyContent: "space-between", backgroundColor: isDarkThemeSelector ? ThemeType.DARK : ThemeType.LIGHT }}>
                 {/* Fold or Expand */}
                 <div>
@@ -80,7 +80,7 @@ export default function ContentBody(props: {}) {
                     <HeaderItemText isClipped>User</HeaderItemText>
                 </div>
             </Header>
-            <Content id="example-main-content" style={{ height: "100vh" }}>
+            <Content id="example-main-content" style={{ height: '850px', overflow: "auto" }}>
                 <Main style={{ padding: 28 }}>
                     <Switch>
                         <Provider store={ListingStore}>
