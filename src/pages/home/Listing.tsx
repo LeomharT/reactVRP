@@ -1,6 +1,6 @@
 import { Button } from '@zendeskgarden/react-buttons';
 import { Close, Notification, Title, useToast } from '@zendeskgarden/react-notifications';
-import React, { ReactNode, useCallback, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListingData } from '../../redux/ListingStore/Listing_Types';
 import { GetListingDataSelector } from '../../redux/ListingStore/Listring_Selector';
@@ -41,23 +41,6 @@ export default function Listing() {
 export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
 
     const { addToast } = useToast();
-    const handleClick = useCallback(
-        (message: string) => {
-            return () => {
-                addToast(
-                    ({ close }) => (
-                        <Notification type='success' style={{ width: '450px' }}>
-                            <Title>Info</Title>
-                            {message}
-                            <Close aria-label="Close" onClick={close} />
-                        </Notification>
-                    ),
-                    { placement: "top" }
-                );
-            };
-        },
-        [addToast]
-    );
     const dispatch = useDispatch();
     if (!data) return null;
     return (
@@ -90,6 +73,16 @@ export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
                             <Button size='small'
                                 onClick={() => {
                                     dispatch({ type: 'AddWatchData' });
+                                    addToast(
+                                        ({ close }) => (
+                                            <Notification type='success' style={{ width: '450px' }}>
+                                                <Title>Info</Title>
+                                                buy success
+                                                <Close aria-label="Close" onClick={close} />
+                                            </Notification>
+                                        ),
+                                        { placement: "top" }
+                                    );
                                 }}
                             >Buy</Button>
                             &nbsp;&nbsp;
@@ -102,7 +95,6 @@ export const DataRow = (data: ListingData[], dataType: string): ReactNode => {
                                             <Button
                                                 size='small'
                                                 onClick={() => {
-
                                                     addToast(
                                                         ({ close }) => (
                                                             <Notification type='success' style={{ width: '450px' }}>
