@@ -80,7 +80,13 @@ export default function ContentBody(props: {}) {
                     <HeaderItemText isClipped>User</HeaderItemText>
                 </div>
             </Header>
-            <Content id="example-main-content" style={{ height: '850px', overflow: "auto" }}>
+            <Content
+                id="example-main-content"
+                style={{
+                    overflow: "auto",
+                    display: 'flex'
+                }}
+            >
                 <Main style={{ padding: 28 }}>
                     <Switch>
                         <Provider store={ListingStore}>
