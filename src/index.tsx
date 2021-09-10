@@ -1,14 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
+import {
+    BrowserRouter as Router, Route, Switch
+} from 'react-router-dom';
+import App1 from './app1/pages';
+import App2 from './app2/pages';
 import './index.css';
-import App from './pages';
 import reportWebVitals from './reportWebVitals';
 import store from './store/index';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router>
+            <Switch>
+                <Route path='/App1'>
+                    <App1 />
+                </Route>
+                <Route path='/App2'>
+                    <App2 />
+                </Route>
+            </Switch>
+        </Router>
+
     </Provider>,
     document.getElementById('root')
 );
