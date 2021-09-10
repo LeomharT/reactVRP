@@ -1,11 +1,11 @@
 import {
     Chrome
 } from '@zendeskgarden/react-chrome';
+import { ToastProvider } from '@zendeskgarden/react-notifications';
 import { DEFAULT_THEME, IGardenTheme } from '@zendeskgarden/react-theming';
 import React, { HTMLAttributes } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { ToastProvider } from '_@zendeskgarden_react-notifications@8.39.1@@zendeskgarden/react-notifications';
 import { IsDarkThemeSelector, SetPrimaryHueSelecto } from '../../redux/HomeStore/Home_Selector';
 import { ThemeType } from '../../redux/HomeStore/Home_Types';
 import ContentBody from './ContentBody';
